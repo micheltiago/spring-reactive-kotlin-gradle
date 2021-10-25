@@ -1,0 +1,12 @@
+spring:
+  main:
+    banner-mode: "off"
+endpoints:
+  customer-assets:
+    url: http://assets.localhost/api/v1
+  costumer:
+    data:
+      url: http://customer.localhost/api/v1
+  acquisition:
+    orders:
+      url: http://orders.localhost/api/v1
