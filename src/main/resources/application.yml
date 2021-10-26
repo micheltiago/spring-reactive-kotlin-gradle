@@ -1,12 +1,28 @@
 spring:
-  main:
-    banner-mode: "off"
+  application:
+    group: my-group
+    name: spring-reactive-kotlin-gradle
+  data:
+    mongodb:
+      auto-index-creation: true
+  cloud:
+    stream:
+      kafka:
+        binders:
+          headers: PARTITION_ID
+      bindings:
+        confKafkaChannel:
+          destination: kafka-topic-v1
+          contentType: application/json
+          group: ${spring.application.name}
+          consumer:
+            partitioned: true
 endpoints:
   customer-assets:
-    url: http://assets.localhost/api/v1
+    url: http://customer-assets/api/v1
   costumer:
     data:
-      url: http://customer.localhost/api/v1
+      url: http://customer-data/api/v1
   acquisition:
     orders:
-      url: http://orders.localhost/api/v1
+      url: http://customer-orders/api/v1

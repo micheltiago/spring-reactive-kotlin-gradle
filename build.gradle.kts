@@ -29,7 +29,9 @@ dependencies {
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
 
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
-	implementation("org.apache.kafka:kafka-streams")
+
+	implementation("org.springframework.cloud:spring-cloud-stream:3.1.0")
+	implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka:3.1.0")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
