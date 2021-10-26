@@ -1,4 +1,4 @@
-package com.example.consumer
+package com.example.event.consumer
 
 import com.example.dto.EventConsumerKafkaDto
 import org.springframework.cloud.stream.annotation.EnableBinding
@@ -7,11 +7,11 @@ import org.springframework.messaging.Message
 import org.springframework.stereotype.Component
 
 @Component
-@EnableBinding(KafkaStreamProcessor::class)
+@EnableBinding(KafkaStreamConfIn::class)
 class KafkaStreamConsumer() {
 
     @StreamListener(
-        value = KafkaStreamProcessor.INPUT,
+        value = KafkaStreamConfIn.IN,
         condition = "headers['productType']=='INDIVIDUAL_SAVINGS_ACCOUNT'"
     )
     fun loadEvent(event: Message<EventConsumerKafkaDto>) {

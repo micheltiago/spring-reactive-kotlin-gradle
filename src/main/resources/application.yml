@@ -11,12 +11,16 @@ spring:
         binders:
           headers: PARTITION_ID
       bindings:
-        confKafkaChannel:
-          destination: kafka-topic-v1
+        myConsumerConfChannelIn:
+          destination: topic-business-in-v1
           contentType: application/json
           group: ${spring.application.name}
           consumer:
             partitioned: true
+        myConsumerConfChannelOut:
+          destination: topic-business-out-v1
+          contentType: application/json
+          group: ${spring.application.name}
 endpoints:
   customer-assets:
     url: http://customer-assets/api/v1

@@ -1,15 +1,15 @@
-package com.example.consumer
+package com.example.event.consumer
 
 import org.springframework.cloud.stream.annotation.Input
 import org.springframework.messaging.SubscribableChannel
 
-interface KafkaStreamProcessor {
+interface KafkaStreamConfIn {
 
-    @Input(INPUT)
+    @Input(IN)
     fun confKafkaChannel(): SubscribableChannel?
 
     companion object {
-        const val INPUT = "confKafkaChannel"
+        const val IN = "myConsumerConfChannelIn"
     }
 
 }
