@@ -1,10 +1,16 @@
 spring:
   application:
-    group: my-group
+    group: localhost
     name: spring-reactive-kotlin-gradle
   data:
     mongodb:
+      enabled: true
       auto-index-creation: true
+      uri: mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false
+      database: products_db
+      authentication-database: products_db
+      repositories:
+        type: reactive
   cloud:
     stream:
       kafka:
@@ -12,21 +18,23 @@ spring:
           headers: PARTITION_ID
       bindings:
         myConsumerConfChannelIn:
-          destination: topic-business-in-v1
+          destination: topic-of-business-v1
           contentType: application/json
           group: ${spring.application.name}
           consumer:
             partitioned: true
         myConsumerConfChannelOut:
-          destination: topic-business-out-v1
+          destination: topic-of-business-v2
           contentType: application/json
           group: ${spring.application.name}
+          producer:
+            partitionKeyExpression: headers['PARTITION_ID']
 endpoints:
   customer-assets:
-    url: http://customer-assets/api/v1
+    url: http://assets-localhost/api/v1
   costumer:
     data:
-      url: http://customer-data/api/v1
+      url: http://customer-localhost/api/v1
   acquisition:
     orders:
-      url: http://customer-orders/api/v1
+      url: http://orders-localhost/api/v1
